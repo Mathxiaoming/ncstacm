@@ -8,7 +8,7 @@ const int maxn = 1010;
 
 struct Bing
 {
-    double val; // 单价
+    double val;    // 单价
     double maxval; // 总价
     double maxw;   // 库存量
     bool operator<(const Bing &b) const
@@ -17,10 +17,10 @@ struct Bing
     }
 } bing[maxn];
 
-int n;  // n种饼,
-double d;  // 市场最大需求d
-double ans;  // 最终答案
-double totw, totval;  // 总重、总价值，用于判断总重小于最大需求d的情况（加个这个判断快一点）
+int n;               // n种饼,
+double d;            // 市场最大需求d
+double ans;          // 最终答案
+double totw, totval; // 总重、总价值，用于判断总重小于最大需求d的情况（加个这个判断快一点）
 
 int main()
 {
