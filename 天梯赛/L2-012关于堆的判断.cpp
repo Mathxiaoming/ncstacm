@@ -1,7 +1,7 @@
-#include<vector>
-#include<string>
-#include<iostream>
-#include<unordered_map>
+#include <vector>
+#include <string>
+#include <iostream>
+#include <unordered_map>
 using namespace std;
 static const auto io_sync_off = []() {
     std::ios::sync_with_stdio(false);
@@ -11,11 +11,11 @@ static const auto io_sync_off = []() {
 
 vector<int> nums;
 
-// ×¢ÒâÕâÌâÉñ¿Ó£¬×ĞÏ¸ÉóÌâµÄ»°»á·¢ÏÖÌâÄ¿ÊÇÒªÇóÄãÔÚ³õÊ¼»¯Îª¿ÕµÄĞ¡¶¥¶Ñ
-// Àï²åÈë½áµã£¬¶ø²»ÊÇÔÚÊäÈëÍê³Éºó½øĞĞ¶ÑÅÅĞò£¬Á½ÕßµÄË³ĞòÊÇ²»Ò»ÑùµÄ 
-// ÏÂÃæµÄ×¢ÊÍÊÇ¶ÑÅÅĞò,ÊäÈëÍê³Éºóµ÷ÓÃheap_sort(n)£¬¾Í¿ÉÒÔ¶ÔÊı×é½øĞĞ
-// ¶ÑÅÅĞò £¬ÏÈ¿´ÔõÃ´ÏòÏÂµ÷ÕûÔÙ¿´ÔõÃ´ÏòÉÏµ÷Õû£¬ÕâÑùºÃÀí½â
-/* void siftdown(int i,int n)  //ÏòÏÂµ÷Õû
+// æ³¨æ„è¿™é¢˜ç¥å‘ï¼Œä»”ç»†å®¡é¢˜çš„è¯ä¼šå‘ç°é¢˜ç›®æ˜¯è¦æ±‚ä½ åœ¨åˆå§‹åŒ–ä¸ºç©ºçš„å°é¡¶å †
+// é‡Œæ’å…¥ç»“ç‚¹ï¼Œè€Œä¸æ˜¯åœ¨è¾“å…¥å®Œæˆåè¿›è¡Œå †æ’åºï¼Œä¸¤è€…çš„é¡ºåºæ˜¯ä¸ä¸€æ ·çš„
+// ä¸‹é¢çš„æ³¨é‡Šæ˜¯å †æ’åº,è¾“å…¥å®Œæˆåè°ƒç”¨heap_sort(n)ï¼Œå°±å¯ä»¥å¯¹æ•°ç»„è¿›è¡Œ
+// å †æ’åº ï¼Œå…ˆçœ‹æ€ä¹ˆå‘ä¸‹è°ƒæ•´å†çœ‹æ€ä¹ˆå‘ä¸Šè°ƒæ•´ï¼Œè¿™æ ·å¥½ç†è§£
+/* void siftdown(int i,int n)  //å‘ä¸‹è°ƒæ•´
 {
     int t=nums[i],j;
     while((j=2*i+1)<n)
@@ -31,7 +31,7 @@ vector<int> nums;
     nums[i]=t;
 }
 
- void heap_sort(int n)       //¶ÑÅÅĞò
+ void heap_sort(int n)       //å †æ’åº
 {
     for(int i=(n-2)/2;i>=0;--i) 
         siftdown(i,n);
@@ -40,81 +40,86 @@ vector<int> nums;
         swap(nums[0],nums[i]);
         siftdown(0,i);
     }
-} */ 
+} */
 
-void siftup(int k)  //ÏòÉÏµ÷Õû£¬½áµã²åÈëµÄÎ»ÖÃÎªk
+void siftup(int k) //å‘ä¸Šè°ƒæ•´ï¼Œç»“ç‚¹æ’å…¥çš„ä½ç½®ä¸ºk
 {
-    int j=k,i=(j-1)/2;  //iÊÇkµÄ¸¸Ç×½Úµã
-    int t=nums[j];
-    while(j>0)          //j²»ÊÇ¸ù½ÚµãÊ±
+    int j = k, i = (j - 1) / 2; //iæ˜¯kçš„çˆ¶äº²èŠ‚ç‚¹
+    int t = nums[j];
+    while (j > 0) //jä¸æ˜¯æ ¹èŠ‚ç‚¹æ—¶
     {
-        if(nums[i]<t) break;
+        if (nums[i] < t)
+            break;
         else
         {
-            nums[j]=nums[i];
-            j=i;
-            i=(i-1)/2;
+            nums[j] = nums[i];
+            j = i;
+            i = (i - 1) / 2;
         }
     }
-    nums[j]=t;
+    nums[j] = t;
 }
 
 int main()
 {
-    int n,m;
-    cin>>n>>m;
+    int n, m;
+    cin >> n >> m;
     nums.resize(n);
-    for(int i=0;i<n;++i)
+    for (int i = 0; i < n; ++i)
     {
-        cin>>nums[i];
+        cin >> nums[i];
         siftup(i);
     }
     string str;
-    unordered_map<int,int> hash;
-    for(int i=0;i<n;++i)
-        hash[nums[i]]=i;
-    for(int i=0;i<m;++i)
+    unordered_map<int, int> hash;
+    for (int i = 0; i < n; ++i)
+        hash[nums[i]] = i;
+    for (int i = 0; i < m; ++i)
     {
-        int x,y,index_x,index_y;
-        cin>>x;cin>>str;
-        index_x=hash[x];
-        if(str[0]=='a')
+        int x, y, index_x, index_y;
+        cin >> x;
+        cin >> str;
+        index_x = hash[x];
+        if (str[0] == 'a')
         {
-            cin>>y;
-            getline(cin,str);
-            index_y=hash[y];
-            if((index_x-1)/2==(index_y-1)/2)
-                cout<<"T"<<endl;
+            cin >> y;
+            getline(cin, str);
+            index_y = hash[y];
+            if ((index_x - 1) / 2 == (index_y - 1) / 2)
+                cout << "T" << endl;
             else
-                cout<<"F"<<endl;
+                cout << "F" << endl;
         }
         else
         {
-            cin>>str;cin>>str;
-            if(str[0]=='r')
+            cin >> str;
+            cin >> str;
+            if (str[0] == 'r')
             {
-                if(index_x==0)
-                    cout<<"T"<<endl;
+                if (index_x == 0)
+                    cout << "T" << endl;
                 else
-                    cout<<"F"<<endl;
+                    cout << "F" << endl;
             }
-            else if(str[0]=='p')
+            else if (str[0] == 'p')
             {
-                cin>>str;cin>>y;
-                index_y=hash[y];
-                if((index_y-1)/2==index_x)
-                    cout<<"T"<<endl;
+                cin >> str;
+                cin >> y;
+                index_y = hash[y];
+                if ((index_y - 1) / 2 == index_x)
+                    cout << "T" << endl;
                 else
-                    cout<<"F"<<endl;
+                    cout << "F" << endl;
             }
             else
             {
-                cin>>str;cin>>y;
-                index_y=hash[y];
-                if((index_x-1)/2==index_y)
-                    cout<<"T"<<endl;
+                cin >> str;
+                cin >> y;
+                index_y = hash[y];
+                if ((index_x - 1) / 2 == index_y)
+                    cout << "T" << endl;
                 else
-                    cout<<"F"<<endl;
+                    cout << "F" << endl;
             }
         }
     }
