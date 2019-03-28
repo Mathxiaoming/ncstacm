@@ -1,4 +1,3 @@
-// 双指针，分对称子串长度为奇偶两种情况。
 #include <iostream>
 #include <algorithm>
 using namespace std;
