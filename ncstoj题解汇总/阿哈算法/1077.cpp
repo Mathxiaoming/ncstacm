@@ -41,7 +41,6 @@ int main()
         int a, b, c;
         cin >> a >> b >> c;
         E[a].push_back({b, c});
-        E[b].push_back({c, b});
     }
     memset(dist, 0x3f, sizeof dist);
     heap_dijkstra();
