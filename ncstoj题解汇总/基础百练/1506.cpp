@@ -31,7 +31,7 @@ int main()
 				str[i] = '!';
 		}
 
-		// 使用vector会有一个点段错误，后来发现如果这里使用string ans[1000][1000]的形式就可以了。
+		// 使用vector会有一个点段错误，后来发现如果这里使用string ans[1000]的形式就可以了。
 		// 把预处理完的单词与符号全部加入ans数组中
 		vector<string> ans;
 		stringstream ss(str);
