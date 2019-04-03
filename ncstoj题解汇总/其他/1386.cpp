@@ -2,9 +2,9 @@
 #include <iostream>
 #include <vector>
 using namespace std;
-
+ 
 vector<string> v;
-
+ 
 string findcompre()
 {
 	for (int i = 0; i < v[0].size(); i++)
@@ -20,7 +20,7 @@ string findcompre()
 		}
 	}
 }
-
+ 
 int main()
 {
 	int T;
@@ -36,7 +36,7 @@ int main()
 			cin >> str;
 			v.push_back(str);
 		}
-
+ 
 		cout << findcompre() << endl;
 	}
 	return 0;
