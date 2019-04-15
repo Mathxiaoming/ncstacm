@@ -2,7 +2,7 @@
 #include <algorithm>
 #include <queue>
 using namespace std;
-struct Statea
+struct State
 {
 	int keys, x, y, step; // keys代表当前状态(点x,y)拥有的钥匙的个数
 	State(int keys, int x, int y, int step) : keys(keys), x(x), y(y), step(step) {}
