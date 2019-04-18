@@ -17,7 +17,7 @@ int main()
         pq.push(-num);
     }
 
-    while (pq.size() != 1)
+    while (pq.size() > 1)
     {
         num = 0;
         for (int i = 0; i <= 1; i++)
