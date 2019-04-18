@@ -47,25 +47,25 @@ int main()
     for (int i = 1; i <= n; i++)
     {
         vector<int> a(6);
-        int x = 0;
+        int sum = 0;
         for (int j = 0; j < 6; j++)
         {
             scanf("%d", &a[j]);
             // 哈希：取模，注意乘法要避免溢出
-            x = (x + (ll)a[j] * a[j] % p) % p;
+            sum = (sum + (ll)a[j] * a[j] % p) % p;
         }
 
         // 邻接表存储每个雪花的信息，可以把查找的时间降到O(1)
-        // 对于每一个在相同表头head[x]的元素，他们6个数的和取模后都为x
+        // 对于每一个在相同表头head[sum]的元素，他们6个数的和取模后都为sum
 
-        // 遍历表头head[x]指向的链表，寻找形状相同的雪花
-        for (int j = 0; j < head[x].size(); j++)
-            if (isEqual(a, head[x][j]))
+        // 遍历表头head[sum]指向的链表，寻找形状相同的雪花
+        for (int j = 0; j < head[sum].size(); j++)
+            if (isEqual(a, head[sum][j]))
             {
                 puts("Twin snowflakes found.");
                 return 0;
             }
-        head[x].push_back(a);
+        head[sum].push_back(a);
     }
     puts("No two snowflakes are alike.");
     return 0;
