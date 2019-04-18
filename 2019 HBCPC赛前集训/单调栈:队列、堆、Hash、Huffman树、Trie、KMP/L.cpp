@@ -9,7 +9,9 @@ vector<vector<int> > head[p+5];
 // 求雪花a的哈希值
 int H(vector<int> a)
 {
-    //对于6个数都相同的雪花，他们6个数之和、6个数之积都应该相等
+    // 对于6个数都相同的雪花，他们6个数之和、6个数之积都应该相等
+    // 构造的哈希方法很多
+    // 比如：
     int sum = 0, mul = 1;
     for (int i = 0; i < 6; i ++)
     {
@@ -17,6 +19,27 @@ int H(vector<int> a)
         mul = (ll)mul * a[i] % p;
     }
     return (sum + mul) % p;
+
+    //或者
+    // int mul = 1;
+    // for (int i = 0; i < 6; i ++)
+    //     mul = (ll)mul * a[i] % p;
+    // return mul;
+
+    //或者
+    // int sum = 0;
+    // for (int i = 0; i < 6; i ++)
+    //     sum = (sum + a[i]) % p;
+    // return sum;
+
+    //或者
+    // int sum = 0, mul = 1;
+    // for (int i = 0; i < 6; i ++)
+    // {
+    //     sum = (sum + a[i]) % p;
+    //     mul = (ll)mul * a[i] % p;
+    // }
+    // return ((ll)sum * mul) % p;
 }
 
 // 判断两个向量正逆序之一是否相同
